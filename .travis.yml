@@ -1,0 +1,17 @@
+language: python
+python:
+  - "3.8"
+before_install:
+  - cd ..
+  - git clone --depth=1 --branch=alpha https://github.com/X-Newbie/X-Userge.git X-Userge
+  - mv X-Userge-Plugins/plugins/ X-Userge/X-Userge/plugins/unof_plugins/
+  - cp -r X-Userge-Plugins/resources/* X-Userge/resources/
+install:
+  - pip install -r X-Userge/requirements.txt
+  - pip install -r X-Userge-Plugins/requirements.txt
+before_script:
+  - rm -rf X-Userge-Plugins/
+  - cd X-Userge
+  - mkdir -p logs
+script:
+  - python -m tests
